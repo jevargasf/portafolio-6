@@ -1,0 +1,14 @@
+[
+    {
+        "saludo": "hola",
+        "despedida": "adios"
+    },
+    {
+        "saludo": "hi",
+        "despedida": "goodbye"
+    },
+    {
+        "saludo": "konnichiwa",
+        "despedida": "sayonara"
+    }
+]
