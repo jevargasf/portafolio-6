@@ -1,4 +1,5 @@
 const express = require('express')
+const { postVenta, getVenta } = require('../controllers/controladorVentas')
 const router = express.Router()
 
 // middleware específico para esta ruta
@@ -8,18 +9,8 @@ router.use(function ventas(req, res, next) {
 })
 
 // define la ruta principal y CRUD
-router.get('/', (req, res) => {
-    res.send('ruta principal de ventas')
-})
-router.post('/', (req, res) => {
-    res.send('ruta post de postear una venta')
-})
-router.put('/', (req, res) => {
-    res.send('ruta put para actualizar una venta')
-})
-router.delete('/', (req, res) => {
-    res.send('ruta delete para borrar una venta')
-})
+router.get('/', getVenta)
+router.post('/', postVenta)
 
 // define ruta secundaria de productos
 router.get('/nolose', (req, res) => {

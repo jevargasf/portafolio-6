@@ -3,34 +3,22 @@ const app = express();
 const port = 8000
 const productos = require('./routes/productos')
 const ventas = require('./routes/ventas')
+const routes = require('./routes/routes')
 const cors = require('cors')
 
-// CRUD básico con ruta principal
-app.route('/') 
-    .get((req, res) => {
-        res.send('hola')
-    })
-    .post((req, res) => {
-        res.send('añade')
-    })
-    .put((req, res) => {
-        res.send('actualiza')
-    })
-    .delete((req, res) => {
-        res.send('borra')
-    })
 
 // uso de cors
-/*ar corsOptions = {
-    origin: 'http://localhost:8000'
-};
-app.use(cors(corsOptions))*/
+app.use(cors())
 
-// llamada a rutas productos y ventas
+// Definir rutas de las páginas de la aplicación
+app.use('/', routes)
+
+// Llamada a rutas CRUD productos y ventas
 app.use('/productos', productos)
 app.use('/ventas', ventas)
 
-
+// servir archivos estáticos desde public
+app.use(express.static("public"));
 
 // escucha de puerto
 app.listen(port, () => {
