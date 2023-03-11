@@ -1,5 +1,5 @@
     //Leer JSON con API fetch
-    const url = '../public/data/productos.json'
+    const url = 'http://localhost:8000/'
 
  // Llamada a funciones localStorage cuando carga la página
  window.addEventListener('DOMContentLoaded', e => {loadJSON()
@@ -37,7 +37,7 @@ function templateProductos (datos) {
         let btnVerMas = templateTarjetas.querySelector(".btn.btn-secondary.btnVerMas")
         nombre.textContent = item.nombre
         precio.textContent = item.precio
-        img.src = './public'+item.imagen
+        img.src = './'+item.imagen
         button.dataset.id = item.id
         button.id = "botonAgregar"+item.id
         btnVerMas.href = "#modalFicha"+item.id
@@ -58,7 +58,7 @@ function templateProductos (datos) {
         nombreModal.textContent = item.nombre
         precioModal.textContent = item.precio
         descripcionModal.textContent = item.descripcion
-        imgModal.src = './public'+item.imagen
+        imgModal.src = './'+item.imagen
         stockModal.textContent = `Stock: Quedan ${item.stock} disponibles.`
 
         const clonTarjeta = templateTarjetas.cloneNode(true)

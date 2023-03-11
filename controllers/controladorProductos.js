@@ -1,5 +1,5 @@
 const express = require('express')
-const { access, constants, readFile } = require('node:fs');
+const { access, constants, readFile, readFileSync } = require('node:fs');
 
 // ruta json data
 const file = './public/data/productos.json'
@@ -20,14 +20,24 @@ access(file, constants.W_OK, (err) => {
 // OTRA OPCIÓN MEJOR: ESCRIBIR FUNCIÓN PARA READFILE Y WRITEFILE Y LLAMARLO EN CADA FUNCIÓN
 
 // funciones para peticiones HTTP
-function conseguirProductos (req, res) {
+/*function conseguirProductos (req, res) {
     // leer archivo json
-    readFile(file, 'utf8', (err, data) => {
+    const dataProductos = readFile(file, 'utf8', (err, data) => {
         if (err) throw err
-        res.status(200).send(JSON.stringify(data))
+        res.status(200).send(JSON.parse(data))
+        })
+    return dataProductos
+}*/
+const dataJson = readFileSync(file, 'utf8', (err, data) => {
+    if (err) throw err
+    data
     })
-}
 
+//console.log(dataJson)
+
+function conseguirProductos (req, res) {
+    res.send('ruta get de productos')
+}
 // AQUÍ WRITEFILE PARA ESCRIBIR NUEVO PRODUCTO CON FILESYSTEM
 function postearProductos (req, res) {
     res.send('ruta post de productos')
@@ -44,4 +54,4 @@ function borrarProductos (req, res) {
 }
 
 
-module.exports = { conseguirProductos, postearProductos, actualizarProductos, borrarProductos }
+module.exports = { postearProductos, actualizarProductos, borrarProductos, conseguirProductos, dataJson }
