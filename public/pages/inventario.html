@@ -118,9 +118,9 @@
             <div class="col-md-9 mb-md-0 mb-5 mx-auto bg-dark text-white rounded-top">
                 <form id="formularioInventario" name="formularioInventario" encType="multipart/form-data">
     
-                    <div class="row">
+                    <div class="row" id="contenedorBotones">
                         <div class="m-3 col">
-                            <button type="submit" class="btn btn-success" id="conseguirProductos" formaction="" formmethod="GET">Ver Todos los Productos</button>
+                            <button type="button" class="btn btn-success" id="conseguirProductos" formaction="" formmethod="GET">Ver Todos los Productos</button>
                         </div>
                         <div class="m-3 col">
                             <button type="submit" class="btn btn-primary" id="postProducto" formaction="" formmethod="POST">Subir Nuevo Producto</button>
@@ -151,15 +151,8 @@
                 <th scope="col">Imagen</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
+            <tbody id="contenedorTabla">
+              
             </tbody>
           </table>
           </div>
