@@ -1,14 +1,18 @@
 const express = require('express');
-const app = express();
 const port = 8000
+const cors = require('cors')
 const routerProductos = require('./routes/productosRoutes')
 const routerVentas = require('./routes/ventas')
 const routerPrincipal = require('./routes/routes')
-const cors = require('cors')
 
-
+const app = express();
 // uso de cors
 app.use(cors())
+
+// middlewares
+app.use(express.json());
+app.use(express.urlencoded());
+
 
 // Definir rutas de las páginas de la aplicación
 app.use('/', routerPrincipal)
@@ -20,8 +24,7 @@ app.use('/ventas', routerVentas)
 // servir archivos estáticos desde public
 app.use(express.static("public"));
 
-// motor de plantillas
-app.set('view engine', 'ejs')
+
 
 // escucha de puerto
 app.listen(port, () => {

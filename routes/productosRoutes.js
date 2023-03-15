@@ -18,9 +18,9 @@ router.get('/', (req, res) => {
 
 // define la ruta principal y CRUD
 router.get('/', conseguirProductos)
-router.post('/', postearProductos)
-router.put('/', actualizarProductos)
-router.delete('/', borrarProductos)
+router.post('/post', postearProductos)
+router.put('/actualizar', actualizarProductos)
+router.delete('/borrar', borrarProductos)
 
 // define ruta secundaria de productos
 router.get('/nolose', (req, res) => {

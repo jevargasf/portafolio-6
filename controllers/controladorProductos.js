@@ -40,7 +40,13 @@ function conseguirProductos (req, res) {
 }
 // AQUÍ WRITEFILE PARA ESCRIBIR NUEVO PRODUCTO CON FILESYSTEM
 function postearProductos (req, res) {
-    res.send('ruta post de productos')
+    try {
+        console.log(req)
+        res.send('se procesó la solicitud')
+    } catch (err) {
+        console.log('error: ', err)
+    }
+
 }
 
 // AQUÍ WRITEFILE PARA ESCRIBIR NUEVO PRODUCTO CON FILESYSTEM
