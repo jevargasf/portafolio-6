@@ -6,10 +6,17 @@
     contenedorBotones.addEventListener('click', (e) => botonesInventario.listarProductos(e))
 
     //Formulario post
-    const rutaPost = ''
+    const rutaPost = 'http://localhost:8000/productos/post'
     const contenedorFormularios = document.getElementById("contenedorFormularios")
     const formularioPost = document.getElementById("formularioPost")
+    // Evento pinta formulario post
     contenedorBotones.addEventListener('click', (e) => botonesInventario.formularioPost(e))
+    // Evento para recuperar datos formulario del DOM
+
+    document.getElementById("formulario")?.addEventListener('submit', (e) => botonesInventario.postearProducto(e))
+    
+    
+
   let botonesInventario = {
     listarProductos: function (e) {
         if (e.target.id === 'conseguirProductos') {
@@ -32,7 +39,7 @@
     formularioPost: function (e) {
         if (e.target.id === 'formularioPost') {
             contenedorFormularios.innerHTML =`
-            <form id="formulario" name="formulario" action="/productos/post" method="POST">
+            <form id="formulario" name="formulario">
 
             <!-- Fila -->
             <div class="row">
@@ -63,13 +70,15 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="md-form mb-0">
-                        <input type="text" id="subject" name="subject" class="form-control">
-                        <label for="subject" class="">Stock</label>
+                        <input type="text" id="stock" name="stock" class="form-control">
+                        <label for="stock" class="">Stock</label>
                     </div>
                 </div>
             <!-- Columna -->
             <div class="col-md-6">
                     <div class="md-form mb-0">
+                        <input class="form-control" type="file" name="imagen" id="imagen">
+                        <label for="imagen" class="form-label">Selecciona una foto para el producto</label>
                     </div>
                 </div>
             </div>
@@ -97,11 +106,28 @@
         </form>
             `
         }
-    }
-  }
+    },
+    postearProducto: function (e) {
+        if (e.target.id === 'postearProducto'){
+            e.preventDefault()
 
-//                         <input class="form-control" type="file" name="imagen" id="imagen">
-// <label for="imagen" class="form-label">Selecciona una foto para el producto</label>
+            const nombre = document.getElementById("nombre").value
+            const precio = document.getElementById("precio").value
+            const stock = document.getElementById("stock").value
+            const descripcion = document.getElementById("descripcion").value
+            let dataProducto = { nombre, precio, stock, descripcion }
+            console.log(dataProducto)    
+        }
+        
+         /*   fetch(rutaPost, {
+                method: POST,
+            body: dataProducto})
+                .then(response => response.json())
+                .then(data => console.log(data));*/
+        }
+    }
+
+
 
 
 
