@@ -102,7 +102,7 @@
     </div>
   </nav>
      <!-- Formulario de inventario -->
-     <section class="mb-4 p-5 border border-light">
+     <section class="mb-4 p-5 border border-light" id="section">
         <div class="container d-flex">
             <p><a href="/" class="text-dark mx-2">Volver</a></p>
             <p><a href="#" class="text-dark mx-2">Cerrar Sesión</a></p>
@@ -123,7 +123,7 @@
                             <button type="button" class="btn btn-success" id="conseguirProductos" formaction="" formmethod="GET">Ver Todos los Productos</button>
                         </div>
                         <div class="m-3 col">
-                            <button type="button" class="btn btn-primary" id="formularioPost">Subir Nuevo Producto</button>
+                            <button type="button" class="btn btn-primary" id="btnPintarFormularioPost">Subir Nuevo Producto</button>
                         </div>
                         <div class="m-3 col">
                             <button type="submit" class="btn btn-warning" id="actualizarProducto">Actualizar Info Producto</button>
@@ -140,7 +140,21 @@
             <!-- Columna -->
             <div class="b-example-divider"></div>
             <div class="col-md-9 mb-md-0 mb-5 mx-auto bg-dark text-white rounded-bottom p-3" id="contenedorFormularios">
-              
+              <table class="table bg-dark text-white rounded">
+                <thead>
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Stock</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">Imagen</th>
+                  </tr>
+                </thead>
+                <tbody id="contenedorTabla">
+                  
+                </tbody>
+              </table>
           </div>
         </div>
 

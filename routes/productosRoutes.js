@@ -4,18 +4,6 @@ const { conseguirProductos, postearProductos, actualizarProductos, borrarProduct
 
 
 
-// middleware específico para esta ruta 
-/*router.use(function leerProductos(req, res, next) {
-    console.log('todo bien?')
-    next()
-})
-
-// Manejador para la página "Acerca de nosotros"
-router.get('/', (req, res) => {
-  res.render('about', { title: 'Acerca de nosotros' });
-});
-*/
-
 // define la ruta principal y CRUD
 router.get('/', conseguirProductos)
 router.post('/post', postearProductos)
@@ -28,3 +16,19 @@ router.get('/nolose', (req, res) => {
 })
 
 module.exports = router
+
+
+
+
+
+// middleware específico para esta ruta 
+/*router.use(function leerProductos(req, res, next) {
+    console.log('todo bien?')
+    next()
+})
+
+// Manejador para la página "Acerca de nosotros"
+router.get('/', (req, res) => {
+  res.render('about', { title: 'Acerca de nosotros' });
+});
+*/

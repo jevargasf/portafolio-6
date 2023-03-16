@@ -1,4 +1,5 @@
     //Listar productos
+    //const url = 'http://localhost:8000'
     const rutaGet = 'http://localhost:8000/'
     const btnConseguirProductos = document.getElementById("conseguirProductos")
     const contenedorBotones = document.getElementById("contenedorBotones")
@@ -8,12 +9,14 @@
     //Formulario post
     const rutaPost = 'http://localhost:8000/productos/post'
     const contenedorFormularios = document.getElementById("contenedorFormularios")
-    const formularioPost = document.getElementById("formularioPost")
+    const btnPintarFormularioPost = document.getElementById("btnPintarFormularioPost")
     // Evento pinta formulario post
-    contenedorBotones.addEventListener('click', (e) => botonesInventario.formularioPost(e))
+    btnPintarFormularioPost.addEventListener('click', (e) => {
+        botonesInventario.formularioPost(e)
+        document.getElementById("formularioPost").addEventListener('submit', e => botonesInventario.postearProducto(e));
+    })
     // Evento para recuperar datos formulario del DOM
 
-    document.getElementById("formulario")?.addEventListener('submit', (e) => botonesInventario.postearProducto(e))
     
     
 
@@ -37,9 +40,9 @@
         }
     },
     formularioPost: function (e) {
-        if (e.target.id === 'formularioPost') {
+        if (e.target.id === 'btnPintarFormularioPost') {
             contenedorFormularios.innerHTML =`
-            <form id="formulario" name="formulario">
+            <form id="formularioPost" name="formularioPost">
 
             <!-- Fila -->
             <div class="row">
@@ -108,22 +111,23 @@
         }
     },
     postearProducto: function (e) {
-        if (e.target.id === 'postearProducto'){
             e.preventDefault()
-
             const nombre = document.getElementById("nombre").value
             const precio = document.getElementById("precio").value
             const stock = document.getElementById("stock").value
             const descripcion = document.getElementById("descripcion").value
-            let dataProducto = { nombre, precio, stock, descripcion }
-            console.log(dataProducto)    
-        }
-        
-         /*   fetch(rutaPost, {
-                method: POST,
-            body: dataProducto})
-                .then(response => response.json())
-                .then(data => console.log(data));*/
+            let dataProducto = { nombre, precio, stock, descripcion }        
+            
+                fetch(rutaPost, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json' 
+                    }, 
+                    body: JSON.stringify(dataProducto)
+                })
+                    .then(response => alert(response.text()))
+                    .then(data => data)
+                    .catch(err => console.log('Error: ', err))            
         }
     }
 
