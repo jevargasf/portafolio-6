@@ -31,19 +31,21 @@ function conseguirProductos (req, res) {
 function postearProductos (req, res) {
     try {
         let nuevoProducto = { nombre, precio, stock, descripcion } = req.body
-        nuevoProducto["id"] = 16
-        
-        console.log('llegó la data', nuevoProducto)
-        
-      /*  writeFile(file, nuevoProducto, (err) => {
+        nuevoProducto = Object.assign( {id: 16}, nuevoProducto)
+        let productos = JSON.parse(dataJson)
+        productos.push(nuevoProducto)
+        console.log(productos)
+
+        writeFile(file, JSON.stringify(productos), (err) => {
             if (err)
               console.log(err);
             else {
               console.log("File written successfully\n");
               console.log("The written has the following contents:");
               console.log(readFileSync(file, "utf8"));
+              res.json(productos)
             }
-          });*/
+          });
         res.setHeader('Content-Type', 'text/plain; charset=utf-8');
         res.send("se procesó correctamente")
     } catch (err) {

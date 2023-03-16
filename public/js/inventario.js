@@ -125,8 +125,8 @@
                     }, 
                     body: JSON.stringify(dataProducto)
                 })
-                    .then(response => alert(response.text()))
-                    .then(data => data)
+                    .then(response => response.text())
+                    .then(data => alert(data))
                     .catch(err => console.log('Error: ', err))            
         }
     }
