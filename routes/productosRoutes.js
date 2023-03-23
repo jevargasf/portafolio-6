@@ -1,14 +1,15 @@
 const express = require('express')
 const router = express.Router()
-const { conseguirProductos, postearProductos, actualizarProductos, borrarProductos } = require('../controllers/controladorProductos')
+const { conseguirProductos, conseguirProductoId, postearProductos, actualizarProductos, borrarProductos } = require('../controllers/controladorProductos')
 
 
 
 // define la ruta principal y CRUD
 router.get('/', conseguirProductos)
+router.get('/:id', conseguirProductoId)
 router.post('/post', postearProductos)
-router.put('/actualizar', actualizarProductos)
-router.delete('/borrar', borrarProductos)
+router.put('/actualizar/:id', actualizarProductos)
+router.delete('/borrar/:id', borrarProductos)
 
 // define ruta secundaria de productos
 router.get('/nolose', (req, res) => {
