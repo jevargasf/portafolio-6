@@ -51,7 +51,7 @@ function postearProductos (req, res) {
         dataObjeto.push(nuevoProducto)
         console.log(dataObjeto)
 
-        writeFile(file, JSON.stringify(dataObjeto), (err) => {
+        writeFile(file, JSON.stringify(dataObjeto, 0, 4), (err) => {
             if (err)
               console.log(err);
             else {
@@ -72,19 +72,16 @@ function postearProductos (req, res) {
 // AQUÍ WRITEFILE PARA ESCRIBIR NUEVO PRODUCTO CON FILESYSTEM
 function actualizarProductos (req, res) {
     try {
-        let productoActualizar = null
-        dataObjeto.filter(item => {
+        dataObjeto.forEach(item => {
             if (item.id === parseInt(req.params.id)) {
-                productoActualizar = item
+                item.nombre = req.body.nombre
+                item.precio = req.body.precio
+                item.stock = req.body.stock
+                item.descripcion = req.body.descripcion
             }
         })
-        productoActualizar.nombre = req.body.nombre
-        productoActualizar.precio = req.body.precio
-        productoActualizar.stock = req.body.stock
-        productoActualizar.descripcion = req.body.descripcion
-
-        dataObjeto[parseInt(req.params.id)] = productoActualizar
-        writeFile(file, JSON.stringify(dataObjeto), (err) => {
+        
+       writeFile(file, JSON.stringify(dataObjeto, 0, 4), (err) => {
             if (err)
               console.log(err);
             else {

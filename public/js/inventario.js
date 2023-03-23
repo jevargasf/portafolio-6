@@ -171,9 +171,52 @@ const formularioActualizar = async (e) => {
 }
     // formulario delete (borrar con id)
 let idBorrar = null
-const formularioDelete = function () {
+const formularioDelete = async () => {
     try {    
+         // pintar tabla
+        contenedorFormularios.innerHTML = `
+        <table class="table bg-dark text-white rounded">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Stock</th>
+                    <th scope="col">Imagen</th>
+                </tr>
+            </thead>
+            <tbody id="contenedorTabla">
+            </tbody>
+            <tfoot id="footTabla">
+                
+            </tfoot>
+         </table>
+         `
+
+        const contenedorTabla = document.getElementById("contenedorTabla")
+        const footTabla = document.getElementById("footTabla")
+     // petición datos
         idBorrar = prompt("Ingrese el Id del producto que desea eliminar de la base de datos: ")
+        const rutaGetId = `http://localhost:8000/productos/${idBorrar}`
+        const res = await axios(rutaGetId)
+        const nuevaFila = document.createElement("tr")
+        nuevaFila.innerHTML = `
+            <td>${res.data.id}</td>
+            <td>${res.data.nombre}</td>
+            <td>${res.data.precio}</td>
+            <td>${res.data.stock}</td>
+            <td><img class="img-fluid" width="100" src="../${res.data.imagen}" alt="imagen-producto"></td>
+            `
+        contenedorTabla.appendChild(nuevaFila)
+        footTabla.innerHTML = `
+            <form id="formularioBorrar" name="formularioBorrar">
+                <div class="row">
+                    <td colspan="5" class="m-3 text-center">
+                        <button type="submit" class="btn btn-primary col-2" id="borrarProducto">Borrar</button>
+                    </td>
+                </div>
+            </form>
+        `
     } catch (err) {
         console.log('Error:', err)
     }
@@ -261,7 +304,7 @@ const actualizarProducto = async(e) => {
             url: rutaPut,
             data: dataProducto
         })
-        console.log(res.data)
+        alert(res.data.mensaje)
     } catch (err) {
         console.log('Error: ', err)
     }
@@ -287,7 +330,7 @@ const borrarProducto = async() => {
 // manejo de eventos
 btnConseguirProductos.addEventListener('click', listarProductos)
 btnPintarFormularioPost.addEventListener('click', () => {
-    formularioPost
+    formularioPost()
     document.getElementById("formularioPost").addEventListener('submit', e => postearProducto(e));
 })
 btnActualizarProducto.addEventListener('click', (e) => {
