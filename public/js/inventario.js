@@ -171,10 +171,12 @@ const formularioActualizar = async (e) => {
 }
     // formulario delete (borrar con id)
 let idBorrar = null
-const formularioDelete = async () => {
+const formularioDelete = async (e) => {
     try {    
          // pintar tabla
         contenedorFormularios.innerHTML = `
+        <form id="formularioBorrar" name="formularioBorrar">
+
         <table class="table bg-dark text-white rounded">
             <thead>
                 <tr>
@@ -191,32 +193,33 @@ const formularioDelete = async () => {
                 
             </tfoot>
          </table>
+         </form>
+
          `
 
         const contenedorTabla = document.getElementById("contenedorTabla")
         const footTabla = document.getElementById("footTabla")
-     // petición datos
-        idBorrar = prompt("Ingrese el Id del producto que desea eliminar de la base de datos: ")
-        const rutaGetId = `http://localhost:8000/productos/${idBorrar}`
-        const res = await axios(rutaGetId)
-        const nuevaFila = document.createElement("tr")
-        nuevaFila.innerHTML = `
-            <td>${res.data.id}</td>
-            <td>${res.data.nombre}</td>
-            <td>${res.data.precio}</td>
-            <td>${res.data.stock}</td>
-            <td><img class="img-fluid" width="100" src="../${res.data.imagen}" alt="imagen-producto"></td>
-            `
-        contenedorTabla.appendChild(nuevaFila)
         footTabla.innerHTML = `
-            <form id="formularioBorrar" name="formularioBorrar">
                 <div class="row">
                     <td colspan="5" class="m-3 text-center">
-                        <button type="submit" class="btn btn-primary col-2" id="borrarProducto">Borrar</button>
+                        <button type="submit" class="btn btn-primary col-2" id="confirmaBorrar">Borrar</button>
                     </td>
                 </div>
-            </form>
         `
+             // petición datos
+             idBorrar = prompt("Ingrese el Id del producto que desea eliminar de la base de datos: ")
+             const rutaGetId = `http://localhost:8000/productos/${idBorrar}`
+             const res = await axios(rutaGetId)
+             const nuevaFila = document.createElement("tr")
+             nuevaFila.innerHTML = `
+                 <td>${res.data.id}</td>
+                 <td>${res.data.nombre}</td>
+                 <td>${res.data.precio}</td>
+                 <td>${res.data.stock}</td>
+                 <td><img class="img-fluid" width="100" src="../${res.data.imagen}" alt="imagen-producto"></td>
+                 `
+             contenedorTabla.appendChild(nuevaFila)
+
     } catch (err) {
         console.log('Error:', err)
     }
@@ -292,36 +295,37 @@ const postearProducto = async(e) => {
 const actualizarProducto = async(e) => {
     try {
         e.preventDefault()
-        const nombre = document.getElementById("nombre").value
+        console.log(idActualizar)
+        // recuperar data formulario
+        /*const nombre = document.getElementById("nombre").value
         const precio = parseInt(document.getElementById("precio").value)
         const stock = parseInt(document.getElementById("stock").value)
         const descripcion = document.getElementById("descripcion").value
-        let dataProducto = { id: idActualizar, nombre, precio, stock, descripcion }        
-        console.log(dataProducto)
+        let dataProducto = { id: idActualizar, nombre, precio, stock, descripcion }  
+        // petición put      
         const rutaPut = `http://localhost:8000/productos/actualizar/${idActualizar}`
         const res = await axios({
             method: 'put',
             url: rutaPut,
             data: dataProducto
         })
-        alert(res.data.mensaje)
+        alert(res.data.mensaje)*/
     } catch (err) {
         console.log('Error: ', err)
     }
 }
 
     // borrar producto
-const borrarProducto = async() => {
+const borrarProducto = async(e) => {
     try {
-        console.log(idBorrar)
-        /*const rutaDelete = null
+        e.preventDefault()
+        console.log(parseInt(idBorrar))
+        const rutaDelete = `http://localhost:8000/productos/borrar/${idBorrar}`
         const res = await axios({
         method: 'delete',
-        url: rutaDelete,
-        data: {
-            
-            }
-        })*/
+        url: rutaDelete
+        })
+        alert(res.data.mensaje)
     } catch (err) {
         console.log('Error: ', err)
     }
@@ -337,9 +341,9 @@ btnActualizarProducto.addEventListener('click', (e) => {
     formularioActualizar()
     document.getElementById("formularioActualizar").addEventListener('submit', e => actualizarProducto(e));
 })
-btnBorrarProducto.addEventListener('click', () => {
+btnBorrarProducto.addEventListener('click', (e) => {
     formularioDelete()
-    borrarProducto()
+    document.getElementById("formularioBorrar").addEventListener('submit', e => borrarProducto(e));
 })
 
 

@@ -98,7 +98,27 @@ function actualizarProductos (req, res) {
 
 // AQUÍ WRITEFILE PARA ESCRIBIR NUEVO PRODUCTO CON FILESYSTEM
 function borrarProductos (req, res) {
-    res.send('ruta delete para borrar productos')
+    try {
+        const idBorrar = parseInt(req.params.id)
+        
+        // borrar producto del objeto de productos 
+        let arrNuevo = dataObjeto.filter(item =>
+            item.id != idBorrar
+        )
+        writeFile(file, JSON.stringify(arrNuevo, 0, 4), (err) => {
+            if (err)
+                console.log(err);
+            else {
+                console.log("File written successfully\n");
+                console.log("The written has the following contents:");
+                console.log(readFileSync(file, "utf8"));
+                res.json({ mensaje: "El registro se borró correctamente."})
+            }
+        });
+
+    } catch (err) {
+        console.log('Error: ', err)
+    }
 }
 
 

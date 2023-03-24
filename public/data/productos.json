@@ -118,12 +118,5 @@
         "descripcion": "Fulltone OCD v2 es la más reciente versión del overdrive boutique más vendido de la historia, ahora equipado con interesantes novedades: Buffer de Salida, JFET 2N5457 y el original Interruptor Enhanced Bypass / True-Bypass.",
         "precio": 145000,
         "imagen": "/img/15.webp"
-    },
-    {
-        "id": 16,
-        "nombre": "Amplificador de guitarra Roland JC-40 - 40W Jazz Chorus",
-        "precio": "869000",
-        "stock": "7",
-        "descripcion": "El JC-40 Jazz Chorus ofrece el famoso tono 'JC clean' de Roland y el característico efecto de coro estéreo en un amplificador combo compacto con funciones evolucionadas para el guitarrista moderno. Al igual que el amplificador insignia JC-120 en el que se basa, el JC-40 ofrece un sonido limpio estéreo clásico que es una paleta perfecta para dar forma al tono con efectos stompbox. Ahora, también hay una verdadera entrada estéreo para un rendimiento mejorado con pedales de efectos estéreo, sintetizadores de guitarra, equipo de modelado de amplificador y multiefectos. Además, los efectos integrados del JC-4 0 incluyen funciones recientemente agregadas y sonidos actualizados para satisfacer las necesidades de los jugadores de hoy."
     }
 ]
