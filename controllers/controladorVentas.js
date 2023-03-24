@@ -1,14 +1,18 @@
 const express = require('express')
-// MÓDULOS REQUERIDOS
 
-// FUNCIONES PROTOCOLOS HTTP
-function getVenta (req, res) {
+
+
+const getVenta = (req, res) => {
     res.send('ruta principal de ventas')
 }
 
-function postVenta  (req, res) {
+const getVentaId = (req, res) => {
+    res.send('ruta principal de ventas')
+}
+
+const postVenta = (req, res) => {
     res.send('ruta post de postear una venta')
 }
 
 
-module.exports = { getVenta, postVenta }
+module.exports = { getVenta, getVentaId, postVenta }

@@ -69,7 +69,7 @@ function postearProductos (req, res) {
 
 }
 
-// AQUÍ WRITEFILE PARA ESCRIBIR NUEVO PRODUCTO CON FILESYSTEM
+
 function actualizarProductos (req, res) {
     try {
         dataObjeto.forEach(item => {
@@ -96,7 +96,7 @@ function actualizarProductos (req, res) {
        }
 }
 
-// AQUÍ WRITEFILE PARA ESCRIBIR NUEVO PRODUCTO CON FILESYSTEM
+
 function borrarProductos (req, res) {
     try {
         const idBorrar = parseInt(req.params.id)

@@ -197,7 +197,7 @@ function carritoDOM (arr, e) {
             irCarrito.innerHTML = `
                 <tr>
                 <td colspan="4">
-                <a href="./public/pages/carrito.html" class="btn btn-primary active d-block" role="button">Ver carrito</a>
+                <a href="./assets/carrito.html" class="btn btn-primary active d-block" role="button">Ver carrito</a>
                 </td>
                 </tr>
             `

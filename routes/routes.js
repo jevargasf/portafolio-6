@@ -4,20 +4,16 @@ const router = express.Router();
 const { dataJson } = require('../controllers/controladorProductos')
 
 
-// Escribir rutas para renderización de página principal, nosotros, carrito y contacto
-// Manejador para la página de inicio
+// Ruta y manejador para la página de inicio
 router.get('/', (req, res) => {
   res.send(dataJson);
 });
 
-// Manejador para la página de contacto
-router.get('/contacto', (req, res) => {
-  res.render('contacto.ejs', { title: 'Página de contacto' });
+// Ruta y manejador para la página de contacto
+router.post('/contacto', (req, res) => {
+  res.send('ruta post formulario de contacto');
 });
 
-// Manejador para la página 'Nuestra Tienda'
-router.get('/nosotros', (req, res) => {
-  res.render('nosotros.ejs', { title: 'Nuestra empresa' });
-});
+
 
 module.exports = router;
