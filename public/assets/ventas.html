@@ -127,11 +127,16 @@
                     <div class="card-body bg-light text-secondary">
                         <div class="row my-2 d-flex justify-content-between" id="conteoProductos"></div>
                         <div class="row my-2" id="totalProductos"></div>
-                        <div class="my-2" id="inputDescuento"></div>
+                        <div class="my-2" id="inputDescuento">
+                            <div class="input-group pt-3">
+                                <input type="text" class="form-control" placeholder="Ingresa código descuento" aria-label="Username" aria-describedby="input-group-button-right" id="textoDescuento">
+                                <button type="button" class="btn btn-outline-secondary" id="botonDescuento">Aplicar</button>
+                                </div>
+                        </div>
                     </div>
                     <div class="card-footer bg-white text-center">
                         <div class="m-1 col">
-                            <button type="submit" class="btn btn-success" id="botonPagar">Confirmar compra</button>
+                            <button type="button" class="btn btn-success" id="botonPagar">Confirmar compra</button>
                         </div>
                     </div>
                 </div>
