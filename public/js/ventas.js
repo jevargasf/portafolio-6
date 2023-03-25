@@ -18,8 +18,25 @@ let carrito = {
         return totalProductos
     },
     datosVenta: function () {
-        console.log(this.productos)
-
+        try{
+            // escribir datos factura
+            fecha = new Date()
+            let datosFactura = {
+                fecha: `${fecha.getDate()}-${fecha.getMonth()+1}-${fecha.getFullYear()}`,
+                hora: `${fecha.getHours()}:${fecha.getMinutes()}:${fecha.getSeconds()}`,
+                productos: []
+            }
+            this.productos.forEach(item => {
+                producto = {
+                    idProducto: item.id,
+                    cantidad: item.cantidad
+                }
+                datosFactura.productos.push(producto)
+            })
+            return datosFactura
+        } catch (err) {
+            console.log('Error:', err)
+        }
     }
 }
 
@@ -32,7 +49,6 @@ let carrito = {
 
 // Función para pintar en el carrito la data almacenada en localStorage
 const pintarLocalStorage = (arr) => {
-    console.log(arr.productos)
         const cuerpoCarrito = document.getElementById("cuerpoCarrito"); 
         const conteoProductos = document.getElementById("conteoProductos")
         const total = document.getElementById("totalProductos")
@@ -76,9 +92,28 @@ function aplicaDescuento (arr) {
     }
 }
 
+const postVenta = async () => {
+    try {
+        // enviar data a servidor
+        const res = await axios({
+            method: 'post',
+            url: `http://localhost:8000/ventas`,
+            data: carrito.datosVenta()
+        })
+        alert(res.data.mensaje)
+    } catch (err) {
+        console.log('Error: ', err)
+    }
+}
+
+
 // AJAX para enviar datos a boleta
 const botonPagar = document.getElementById("botonPagar")
-botonPagar.addEventListener('click', ()=>carrito.datosVenta())
+botonPagar.addEventListener('click', ()=>{
+    
+
+    postVenta()
+})
 //Botón aplica descuento 
 const botonDescuento = document.getElementById("botonDescuento")
 botonDescuento.addEventListener('click', e => aplicaDescuento(carrito));

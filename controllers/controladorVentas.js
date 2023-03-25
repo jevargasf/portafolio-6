@@ -11,7 +11,8 @@ const getVentaId = (req, res) => {
 }
 
 const postVenta = (req, res) => {
-    res.send('ruta post de postear una venta')
+    console.log(req.body)
+    res.json({ mensaje: "Tu compra ha sido procesada con éxito." })
 }
 
 
