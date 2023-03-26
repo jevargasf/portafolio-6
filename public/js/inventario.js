@@ -366,7 +366,7 @@ const conseguirVentas = async () => {
         // petición datos
             const rutaGet = 'http://localhost:8000/ventas'
             const res = await axios(rutaGet)
-        
+            //console.log(res.data)
         // calcular totales para cada factura
         function sumarTotal(){
             prodsVenta = []

@@ -26,7 +26,7 @@
     {
         "id": 4,
         "nombre": "Pedal Ibanez TSMINI - Tube Screamer",
-        "stock": 5,
+        "stock": 4,
         "descripcion": "Entendemos que necesitas espacio, por eso ahora el legendario Tube Screamer está disponible en una versión mini. Originalmente fué uno de los primeros overdrive de la compañía Ibanez. Posee circuitería analógica en un 100%, conmutación True Bypass, entre otras características.",
         "precio": 59990,
         "imagen": "/img/4.webp"
@@ -90,7 +90,7 @@
     {
         "id": 12,
         "nombre": "Pedal de Reverb Strymon BigSky Multidimensional",
-        "stock": 2,
+        "stock": 3,
         "descripcion": "The Strymon BigSky Multidimensional Reverb multi-effects pedal offers a wide assortment of reverb effects currently on the market. Twelve different types of reverb are available with a twist of a knob, and you can deeply edit the effects and store them in the 300 onboard preset slots. And an incredibly powerful SHARC DSP powers the pedal for the best sound quality possible. The Strymon BigSky Multidimensional reverb pedal is powerful enough to be the last reverb pedal you’ll ever need.",
         "precio": 505000,
         "imagen": "/img/12.jpeg"
@@ -98,7 +98,7 @@
     {
         "id": 13,
         "nombre": "Amplificador de guitarra Roland JC-22 - 30W Jazz Chorus",
-        "stock": 5,
+        "stock": 4,
         "descripcion": "El JC-22 Jazz Chorus ofrece el clásico sonido limpio JC de Roland y el famoso efecto Dimensional Space Chorus en un amplificador compacto que es perfecto para tocar en casa. Con este versátil amplificador estéreo disfrutas de las características esenciales del popular JC-40 en una escala aún más reducida, y además es fantástico para grabaciones e interpretaciones intimistas. Una reverb de alta calidad complementa el chorus integrado, y también incluye una entrada estéreo en el panel frontal para conectar modeladores, multiefectos y pedales estéreo. El JC-22 está fabricado con los mismos estándares de sonido y resistencia que definen a esta veterana serie de amplificadores.",
         "precio": 609900,
         "imagen": "/img/13.webp"

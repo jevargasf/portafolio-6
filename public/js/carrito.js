@@ -45,7 +45,6 @@
                             `;   
                     
                             filaNuevoProducto.setAttribute("id", "filaProducto"+item.id)
-                            console.log(footerTotal)
                     if (footerTotal.innerHTML == "") {                     
                         footerTotal.innerHTML = 
                                 `
@@ -102,6 +101,9 @@ let carrito = {
             for (item of this.productos) {
                 if (item.id == e.target.id.slice(1)) {
                     item.cantidad++
+                    if (item.cantidad == item.stock) {
+                        e.target.disabled = true
+                    }
                     localStorage.getItem("carrito")
                     localStorage.setItem("carrito", JSON.stringify(this.productos))
                 }
@@ -115,6 +117,10 @@ let carrito = {
                     item.cantidad--
                     localStorage.getItem("carrito")
                     localStorage.setItem("carrito", JSON.stringify(this.productos))
+                    if (item.cantidad < item.stock) {
+                        const btnSumar = document.getElementById(`A${item.id}`)
+                        btnSumar.disabled = false
+                    }
                     if (item.cantidad === 0) {
                         break
                     }

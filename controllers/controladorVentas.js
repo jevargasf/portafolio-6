@@ -53,7 +53,7 @@ const getVentas = (req, res) => {
 
         })
     })
-
+    dataVentas.sort((x, y) => x.id - y.id)
     res.json(dataVentas)
 
 }
