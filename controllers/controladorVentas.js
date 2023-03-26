@@ -4,6 +4,7 @@ const { dataJson } = require('./controladorProductos.js')
 
 // ruta json data
 const file = './public/data/ventas.json'
+const fileProductos = './public/data/productos.json'
 
 // comprueba que el archivo existe en el directorio
 access(file, constants.F_OK, (err) => {
@@ -106,7 +107,29 @@ const postVenta = (req, res) => {
     }
     nuevaVenta = Object.assign( id, nuevaVenta)
     dataObjeto.push(nuevaVenta)
-    console.log(dataObjeto)
+
+    
+
+    // restar cantidad del stock
+    productosObjeto.forEach(prod => {
+        nuevaVenta.productos.forEach(item => {
+            if (prod.id == item.idProducto) {
+                prod.stock = prod.stock - item.cantidad
+            }
+        })
+      })
+    // actualizar stock productos
+    writeFile(fileProductos, JSON.stringify(productosObjeto, 0, 4), (err) => {
+        if (err)
+            console.log(err);
+        else {
+            console.log("File written successfully\n");
+            console.log("The written has the following contents:");
+            console.log(readFileSync(fileProductos, "utf8"));
+        }
+    });
+
+    // escribir json ventas
     writeFile(file, JSON.stringify(dataObjeto, 0, 4), (err) => {
         if (err)
             console.log(err);
@@ -116,7 +139,8 @@ const postVenta = (req, res) => {
             console.log(readFileSync(file, "utf8"));
             res.json({ mensaje: "Tu compra ha sido procesada con éxito." })
         }
-      });
+    });
+
 }
 
 

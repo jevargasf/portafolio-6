@@ -32,5 +32,16 @@
                 "cantidad": 2
             }
         ]
+    },
+    {
+        "id": 3,
+        "fecha": "26-3-2023",
+        "hora": "20:10:14",
+        "productos": [
+            {
+                "idProducto": 12,
+                "cantidad": 3
+            }
+        ]
     }
 ]
