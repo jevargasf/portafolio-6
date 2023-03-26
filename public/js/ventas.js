@@ -92,6 +92,7 @@ function aplicaDescuento (arr) {
     }
 }
 
+// AJAX para enviar datos a boleta
 const postVenta = async () => {
     try {
         // enviar data a servidor
@@ -106,15 +107,14 @@ const postVenta = async () => {
     }
 }
 
-
-// AJAX para enviar datos a boleta
+// Eventos
+    // botón confirmar compra
 const botonPagar = document.getElementById("botonPagar")
 botonPagar.addEventListener('click', ()=>{
-    
-
     postVenta()
 })
-//Botón aplica descuento 
+
+    // botón aplicar descuento
 const botonDescuento = document.getElementById("botonDescuento")
 botonDescuento.addEventListener('click', e => aplicaDescuento(carrito));
 

@@ -2,12 +2,17 @@
     // contenedores
 const contenedorBotones = document.getElementById("contenedorBotones")
 const contenedorFormularios = document.getElementById("contenedorFormularios")
+const contenedorVentas = document.getElementById("contenedorVentas")
 
     // botones
 const btnConseguirProductos = document.getElementById("conseguirProductos")
 const btnPintarFormularioPost = document.getElementById("btnPintarFormularioPost")
 const btnActualizarProducto = document.getElementById("actualizarProducto")
 const btnBorrarProducto = document.getElementById("borrarProducto")
+const btnConseguirVentas = document.getElementById("conseguirVentas")
+const btnConseguirVentasId = document.getElementById("conseguirVentasId")
+
+    // calcular total venta
 
 // Pintar elementos DOM
 
@@ -297,7 +302,7 @@ const actualizarProducto = async(e) => {
         e.preventDefault()
         console.log(idActualizar)
         // recuperar data formulario
-        /*const nombre = document.getElementById("nombre").value
+        const nombre = document.getElementById("nombre").value
         const precio = parseInt(document.getElementById("precio").value)
         const stock = parseInt(document.getElementById("stock").value)
         const descripcion = document.getElementById("descripcion").value
@@ -309,7 +314,7 @@ const actualizarProducto = async(e) => {
             url: rutaPut,
             data: dataProducto
         })
-        alert(res.data.mensaje)*/
+        alert(res.data.mensaje)
     } catch (err) {
         console.log('Error: ', err)
     }
@@ -319,7 +324,6 @@ const actualizarProducto = async(e) => {
 const borrarProducto = async(e) => {
     try {
         e.preventDefault()
-        console.log(parseInt(idBorrar))
         const rutaDelete = `http://localhost:8000/productos/borrar/${idBorrar}`
         const res = await axios({
         method: 'delete',
@@ -331,6 +335,151 @@ const borrarProducto = async(e) => {
     }
 }
 
+    // get ventas
+const conseguirVentas = async () => {
+    try {
+        // pintar tabla
+        contenedorVentas.innerHTML = `
+            <table class="table bg-dark text-white rounded text-center">
+                <thead>
+                    <tr>
+                        <th scope="col" rowspan="2">Id Factura</th>
+                        <th scope="col" rowspan="2">Fecha</th>
+                        <th scope="col" rowspan="2">Hora</th>
+                        <th scope="col" rowspan="2">Total Venta</th>
+                        <th class="text-center" scope="col" colspan="2">
+                            Productos
+                            <tr>
+                                <td>Nombre</td>
+                                <td>Cantidad</td>
+                            </tr>
+                        </th>
+                        
+                    </tr>
+                </thead>
+                <tbody id="tablaVentas">
+                </tbody>
+            </table>
+            `
+
+        const tablaVentas = document.getElementById("tablaVentas")
+        // petición datos
+            const rutaGet = 'http://localhost:8000/ventas'
+            const res = await axios(rutaGet)
+        
+        // calcular totales para cada factura
+        function sumarTotal(){
+            prodsVenta = []
+            idVentasRep = []
+            res.data.forEach(venta => idVentasRep.push(venta.id))
+            idVentas = [...new Set(idVentasRep)]
+            totalesFacturas = []
+            idVentas.forEach(id => {
+                arrVenta = res.data.filter(element => element.id == id)
+                montosSumar = []
+                arrVenta.forEach(item => {montosSumar.push(item.precio*item.cantidad)})
+                sumaFactura = montosSumar.reduce((a, b) => a+b, 0)
+                totalesFacturas.push({ ["idFactura"]: id, ["total"]: sumaFactura })
+            })
+            totalesFacturas.forEach(factura => {
+                res.data.forEach(venta => {
+                    if (factura.idFactura == venta.id) {
+                        venta["totalVenta"] = factura.total
+                    }
+                })
+                
+            })
+        }        
+        sumarTotal()
+
+            res.data.forEach(venta => {
+            const nuevaFila = document.createElement("tr")
+            nuevaFila.innerHTML += `
+        
+                <td>${venta.id}</td>
+                <td>${venta.fecha}</td>
+                <td>${venta.hora}</td>
+                <td>${venta.totalVenta}</td>
+                <td>${venta.nombre}</td>
+                <td>${venta.cantidad}</td>
+
+                `
+            tablaVentas.appendChild(nuevaFila)
+
+
+            });
+    } catch (err) {
+        console.log('Error: ', err)
+    }
+}
+
+const conseguirVentasId = async () => {
+    try {
+        // pintar tabla
+        contenedorVentas.innerHTML = `
+            <table class="table bg-dark text-white rounded text-center">
+                <thead>
+                    <tr>
+                        <th scope="col" rowspan="2">Id Factura</th>
+                        <th scope="col" rowspan="2">Fecha</th>
+                        <th scope="col" rowspan="2">Hora</th>
+                        <th scope="col" rowspan="2">Total Venta</th>
+                        <th class="text-center" scope="col" colspan="2">
+                            Productos
+                            <tr>
+                                <td>Nombre</td>
+                                <td>Cantidad</td>
+                            </tr>
+                        </th>
+                        
+                    </tr>
+                </thead>
+                <tbody id="tablaVentas">
+                </tbody>
+            </table>
+            `
+
+        const tablaVentas = document.getElementById("tablaVentas")
+        // petición datos
+            const idVenta = prompt("Ingrese el Id de la factura que desea consultar: ")
+            const rutaGetId = `http://localhost:8000/ventas/${idVenta}`
+            const res = await axios(rutaGetId)
+
+        
+        // calcular totales para cada factura
+        function sumarTotal(){
+            montosSumar = []
+            res.data.forEach(item => {montosSumar.push(item.precio*item.cantidad)})
+            sumaFactura = montosSumar.reduce((a, b) => a+b, 0)
+            res.data.forEach(prod => {
+                prod["totalVenta"] = sumaFactura
+            })
+                
+        }        
+        sumarTotal()
+
+            res.data.forEach(venta => {
+            const nuevaFila = document.createElement("tr")
+            nuevaFila.innerHTML += `
+        
+                <td>${venta.id}</td>
+                <td>${venta.fecha}</td>
+                <td>${venta.hora}</td>
+                <td>${venta.totalVenta}</td>
+                <td>${venta.nombre}</td>
+                <td>${venta.cantidad}</td>
+
+                `
+            tablaVentas.appendChild(nuevaFila)
+
+
+            });
+
+
+    } catch (err) {
+        console.log('Error: ', err)
+    }
+}
 // manejo de eventos
 btnConseguirProductos.addEventListener('click', listarProductos)
 btnPintarFormularioPost.addEventListener('click', () => {
@@ -345,7 +494,8 @@ btnBorrarProducto.addEventListener('click', (e) => {
     formularioDelete()
     document.getElementById("formularioBorrar").addEventListener('submit', e => borrarProducto(e));
 })
-
+btnConseguirVentas.addEventListener('click', conseguirVentas)
+btnConseguirVentasId.addEventListener('click', conseguirVentasId)
 
     
     

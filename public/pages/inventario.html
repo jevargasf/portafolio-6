@@ -108,14 +108,15 @@
             <p><a href="#" class="text-dark mx-2">Cerrar Sesión</a></p>
         </div> 
         <!-- Head -->
-        <h2 class="h1-responsive font-weight-bold text-center my-4">Formulario para actualización de productos</h2>
-        <!-- Descripción -->
-        <p class="col-md-9 text-center w-responsive mx-auto m-4">A continuación, ingresa los datos requeridos para cada producto que desees ingresar al inventario. Todos los campos son necesarios para completar el ingreso.</p>
+        <h1 class="h1-responsive font-weight-bold text-center my-4">Sesión del administrador</h1>
+        <!-- Inventario -->
+        <h2 class="mx-5">Gestión del Inventario</h2>
+        <p class="col-md-9 text-center w-responsive mx-auto m-4" id="instrucciones">Elige la acción que deseas realizar. ingresa los datos requeridos para cada producto que desees ingresar al inventario. Todos los campos son necesarios para completar el ingreso.</p>
     
         <div class="row">
     
             <!-- Columna -->
-            <div class="col-md-9 mb-md-0 mb-5 mx-auto bg-dark text-white rounded-top">
+            <div class="col-md-9 mb-md-0 mb-5 mx-auto bg-secondary text-white rounded-top">
                 <form id="formularioInventario" name="formularioInventario" encType="multipart/form-data">
     
                     <div class="row" id="contenedorBotones">
@@ -139,7 +140,24 @@
             </div>
             <!-- Columna -->
             <div class="b-example-divider"></div>
-            <div class="col-md-9 mb-md-0 mb-5 mx-auto bg-dark text-white rounded-bottom p-3" id="contenedorFormularios">
+            <div class="col-md-9 mb-md-0 mb-5 mx-auto bg-secondary text-white rounded-bottom p-3" id="contenedorFormularios">
+
+          </div>
+        </div>
+
+        <!-- Ventas -->
+        <h2 class="m-5">Gestión de Ventas</h2>
+        <div class="row">
+          <div class="col-md-9 mb-md-0 mb-5 mx-auto bg-secondary text-white rounded-top">
+              <div class="row" id="botonesVentas">
+                <div class="m-3 col d-flex justify-content-center">
+                    <button type="button" class="btn btn-success" id="conseguirVentas">Listas todas las ventas</button>
+                </div>
+                <div class="m-3 col d-flex justify-content-center">
+                  <button type="button" class="btn btn-primary" id="conseguirVentasId">Conseguir venta por id factura</button>
+              </div>
+          </div>
+          <div class="col-12" id="contenedorVentas">
 
           </div>
         </div>

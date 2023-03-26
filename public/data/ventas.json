@@ -1,10 +1,36 @@
 [
     {
         "id": 1,
-        "fecha": null,
-        "productos": {
-            "id": null,
-            "cantidad": null
-        }
+        "fecha": "25-3-2023",
+        "hora": "17:1:5",
+        "productos": [
+            {
+                "idProducto": 6,
+                "cantidad": 1
+            },
+            {
+                "idProducto": 1,
+                "cantidad": 3
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "fecha": "25-3-2023",
+        "hora": "17:3:10",
+        "productos": [
+            {
+                "idProducto": 7,
+                "cantidad": 2
+            },
+            {
+                "idProducto": 15,
+                "cantidad": 1
+            },
+            {
+                "idProducto": 13,
+                "cantidad": 2
+            }
+        ]
     }
 ]
