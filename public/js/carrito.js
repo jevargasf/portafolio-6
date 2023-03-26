@@ -5,7 +5,7 @@
 
  const cuerpoCarrito = document.getElementById("cuerpoCarrito"); 
  const footerTotal = document.getElementById("totalCarrito");
- const inputDcto = document.getElementById("inputDcto")
+
 
 
     // Recuperar data almacenada en localStorage
@@ -59,17 +59,7 @@
                     }        
 
                         
-                    if (inputDcto.innerHTML === "") {
-                        inputDcto.innerHTML =
-                            `
-                            <td colspan="5">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Ingresa código descuento" aria-label="Username" aria-describedby="input-group-button-right" id="textoDescuento">
-                                    <button type="button" class="btn btn-outline-secondary" id="input-group-button-right">Aplicar</button>
-                                </div>
-                            </td>
-                            `
-                        }
+
                         
                         cuerpoCarrito.appendChild(filaNuevoProducto);
                        //
@@ -249,7 +239,6 @@ let carrito = {
                     </tr>           
                     `
                     footerTotal.innerHTML = ``;
-                    inputDcto.innerHTML = ``;
                     }
 
             }

@@ -416,6 +416,7 @@ const conseguirVentas = async () => {
 const conseguirVentasId = async () => {
     try {
         // pintar tabla
+        contenedorVentas.setAttribute("class", "col-12")
         contenedorVentas.innerHTML = `
             <table class="table bg-dark text-white rounded text-center">
                 <thead>
@@ -444,7 +445,14 @@ const conseguirVentasId = async () => {
             const idVenta = prompt("Ingrese el Id de la factura que desea consultar: ")
             const rutaGetId = `http://localhost:8000/ventas/${idVenta}`
             const res = await axios(rutaGetId)
-
+        // validación id factura
+        while (res.data.length === 0) {
+            contenedorVentas.setAttribute("class", "col-5 container p-3 m-auto text-center")
+            contenedorVentas.innerHTML=`
+                <h5 class="text-center">Consulta no realizada. Puede revisar la lista de boletas registradas con el botón "Listar todas las ventas"</h5>
+            `            
+            break
+        }
         
         // calcular totales para cada factura
         function sumarTotal(){

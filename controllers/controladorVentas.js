@@ -58,8 +58,9 @@ const getVentas = (req, res) => {
 }
 
 const getVentaId = (req, res) => {
+try {
     let dataVentas = []
-
+    
     productosObjeto.forEach(prod => {
         dataObjeto.forEach(venta => {
             if (venta.id == req.params.id) {
@@ -82,8 +83,12 @@ const getVentaId = (req, res) => {
 
         })
     })
-    
-    res.json(dataVentas)    
+
+    res.json(dataVentas)
+
+} catch (err) {
+    console.log('Error: ', err)
+}
 }
 
 const postVenta = (req, res) => {
